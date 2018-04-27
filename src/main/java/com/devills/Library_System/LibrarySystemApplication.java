@@ -1,4 +1,4 @@
-package com.devills.Library_System;
+package com.devills.library_system;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
