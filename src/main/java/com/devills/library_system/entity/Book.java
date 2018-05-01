@@ -9,4 +9,18 @@ public class Book {
 	@Id
 	private String id;
 	
+	private String name;
+	
+	private String description;
+	
+	private String genre;
+	
+	private String author;
+	
+	
+	private String isbn;
+	
+	//a number that the library uses to identify a book 
+	private String uniqueBookIdentifier;
+	
 }
