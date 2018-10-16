@@ -1,4 +1,4 @@
-package com.devills.Library_System;
+package com.devills.library_system;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
