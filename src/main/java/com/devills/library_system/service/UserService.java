@@ -1,5 +1,7 @@
 package com.devills.library_system.service;
 
+import com.devills.library_system.entity.BookCopy;
+import com.devills.library_system.entity.dto.BorrowRequest;
 import com.devills.library_system.entity.User;
 
 import java.util.List;
@@ -15,4 +17,6 @@ public interface UserService {
     User getUser(String email);
 
     List<User> getAllUsers();
+
+    BookCopy borrowBook(BorrowRequest borrowRequest);
 }

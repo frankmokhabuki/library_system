@@ -1,6 +1,8 @@
 package com.devills.library_system.controller;
 
 
+import com.devills.library_system.entity.BookCopy;
+import com.devills.library_system.entity.dto.BorrowRequest;
 import com.devills.library_system.entity.User;
 import com.devills.library_system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
@@ -30,9 +32,12 @@ public class UserController {
         return userService.addUser(user);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public User updateUser(@RequestBody User user){
         return userService.updateUser(user);
     }
+
+    @PostMapping("/borrow")
+    public BookCopy borrowBook(@RequestBody BorrowRequest borrowRequest){ return userService.borrowBook(borrowRequest); }
 
 }

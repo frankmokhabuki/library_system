@@ -1,5 +1,7 @@
 package com.devills.library_system.service;
 
+import com.devills.library_system.entity.BookCopy;
+import com.devills.library_system.entity.dto.BorrowRequest;
 import com.devills.library_system.entity.User;
 import com.devills.library_system.exception.ResourceNotFoundException;
 import com.devills.library_system.repository.UserRepository;
@@ -18,6 +20,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private BookService bookService;
+
     @Override
     public User addUser(User user) {
         return userRepository.insert(user);
@@ -31,16 +36,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(String email) {
-        User persistentUser = userRepository.findByEmail(email);
-        if(persistentUser == null){
-            throw new ResourceNotFoundException("User not found!");
-        }
+    public User getUser(String userEmail) {
+        User persistentUser = userRepository.findByEmail(userEmail);
+        if(persistentUser == null) throw new ResourceNotFoundException("User not found!");
         return persistentUser;
     }
 
     @Override
     public List<User> getAllUsers(){
         return userRepository.findAll();
+    }
+
+    @Override
+    public BookCopy borrowBook(BorrowRequest borrowRequest) {
+        verifyUserExists(borrowRequest.getUserEmail());
+        return bookService.borrowBook(borrowRequest);
+    }
+
+    private void verifyUserExists(String userEmail) {
+      if(userRepository.findByEmail(userEmail) == null) throw new ResourceNotFoundException("User not found!");
     }
 }
